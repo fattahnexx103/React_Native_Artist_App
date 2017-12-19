@@ -1,12 +1,14 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Linking } from 'react-native';
 import Card from './Card.js';
 import CardSection from './CardSection.js';
+import Button from './Button';
 
 //since its presentational it is functional
 const AlbumDetail = (props) =>{
   return(
     <Card>
+
       <CardSection>
         <View style = {styles.thumbnailContainerStyle}>
           <Image style ={styles.thumbnailStyle} source={{ uri:props.album.thumbnail_image }} />
@@ -16,9 +18,17 @@ const AlbumDetail = (props) =>{
             <Text>{props.album.artist}</Text>
         </View>
       </CardSection>
+
       <CardSection>
         <Image style = {styles.coverImageStyle} source={{ uri: props.album.image}} />
       </CardSection>
+
+      <CardSection>
+        <Button onPress={() => Linking.openURL(props.album.url)}>
+          Buy Now
+        </Button>
+      </CardSection>
+
     </Card>
   );
 };
